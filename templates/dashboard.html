@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block 'title' %} Dashboard {% endblock %}
+
+{% block 'body' %}
+    <div class="container">
+        {% include 'component/sidenav.html' %}
+        <div class="col-md-9">
+            {% include 'component/message.html' %}
+            {% for c in cat %}
+     <h3>{{c.title}}</h3>
+    <hr/>
+
+                {% for b in blog %}
+            {% if c.id == b.category_id %}
+           <h3>{{b.title}}</h3>
+        <span>{{b.category}}</span>
+        <br>
+        {% if b.image %}
+        <img src="{{MEDIA_URL}}{{b.image.url}}" style="width:300px;height:auto;" alt="">
+        {% endif %}
+        <p>{{b.description | truncatewords:20}}</p>
+        <p>Price:${{b.price}}</p>
+            <a href="{% url 'edit_post' b.id %}" class="btn btn-success">Edit</a>
+            <a href="{%url 'delete_post' b.id %} " class="btn btn-danger">Delete</a>
+            <hr/>
+                {% endif %}
+                {% endfor %}
+
+    {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

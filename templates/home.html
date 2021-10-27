@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+
+{% block 'title' %} home {% endblock %}
+
+{% block 'body' %}
+
+<!--<div class="container">-->
+<!--  {% for c in cat %}-->
+<!--     <h3>{{c.title}}</h3>-->
+<!--    <hr/>-->
+<!--    {% for b in blog %}-->
+<!--     {% if c.id == b.category_id %}-->
+<!--    <div class ="row">-->
+<!--        <h3>{{b.title}}</h3>-->
+<!--        <span>{{b.category}}</span>-->
+<!--        <br>-->
+<!--        {% if b.image %}-->
+<!--        <img src="{{MEDIA_URL}}{{b.image.url}}" style="width:300px;height:auto;" alt="">-->
+<!--        {% endif %}-->
+<!--        <p>{{b.description}}</p>-->
+<!--        <p>Price:${{b.price}}</p>-->
+
+
+<!--    </div>-->
+<!--     {% endif %}-->
+<!--    {% endfor %}-->
+<!--    <hr/>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+
+<div class="showcase block">
+      <div class="container">
+          {% for c in cat %}
+        <h2 class="block-title">
+         {{c.title}}
+          </h2>
+           {% for b in blog %}
+     {% if c.id == b.category_id %}
+
+
+<div class="item-carousel" data-toggle="owlcarousel" data-owlcarousel-settings='{"items":4, "pagination":false, "navigation":true, "itemsScaleUp":true}'>
+          <div class="item">
+            {% if b.image %}
+                <img src="{{MEDIA_URL}}{{b.image.url}}"  class="img-responsive underlay">
+              {% endif %}
+
+          </div>
+
+            <div class="item-details bg-noise">
+                <h3>{{b.title}}</h3>
+              <h4 class="item-title">
+
+        <p>Price:${{b.price}}</p>
+              </h4>
+
+
+            <p>{{b.description}}</p>
+         </div>
+
+
+        </div>
+
+  {% endif %}
+        {% endfor %}
+          {% endfor %}
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
